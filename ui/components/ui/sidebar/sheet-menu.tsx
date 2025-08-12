@@ -1,7 +1,7 @@
 import { MenuIcon } from "lucide-react";
 import Link from "next/link";
 
-import { ProwlerExtended } from "@/components/icons";
+import { ThreeHueLogo } from "@/components/icons";
 import {
   Sheet,
   SheetContent,
@@ -35,7 +35,7 @@ export function SheetMenu() {
             asChild
           >
             <Link href="/" className="flex items-center gap-2">
-              <ProwlerExtended />
+              <img src="/3HUE-logo-black.png" style={{ width: 80, height: 'auto' }} />
             </Link>
           </Button>
         </SheetHeader>

@@ -1,7 +1,6 @@
 from pydantic.v1 import BaseModel
 
 from prowler.lib.logger import logger
-from prowler.providers.gcp.config import DEFAULT_RETRY_ATTEMPTS
 from prowler.providers.gcp.gcp_provider import GcpProvider
 from prowler.providers.gcp.lib.service.service import GCPService
 
@@ -20,7 +19,7 @@ class BigQuery(GCPService):
             try:
                 request = self.client.datasets().list(projectId=project_id)
                 while request is not None:
-                    response = request.execute(num_retries=DEFAULT_RETRY_ATTEMPTS)
+                    response = request.execute()
 
                     for dataset in response.get("datasets", []):
                         dataset_info = (
@@ -29,7 +28,7 @@ class BigQuery(GCPService):
                                 projectId=project_id,
                                 datasetId=dataset["datasetReference"]["datasetId"],
                             )
-                            .execute(num_retries=DEFAULT_RETRY_ATTEMPTS)
+                            .execute()
                         )
                         cmk_encryption = False
                         public = False
@@ -66,7 +65,7 @@ class BigQuery(GCPService):
                     projectId=dataset.project_id, datasetId=dataset.name
                 )
                 while request is not None:
-                    response = request.execute(num_retries=DEFAULT_RETRY_ATTEMPTS)
+                    response = request.execute()
 
                     for table in response.get("tables", []):
                         cmk_encryption = False
@@ -77,7 +76,7 @@ class BigQuery(GCPService):
                                 datasetId=dataset.name,
                                 tableId=table["tableReference"]["tableId"],
                             )
-                            .execute(num_retries=DEFAULT_RETRY_ATTEMPTS)
+                            .execute()
                             .get("encryptionConfiguration")
                         ):
                             cmk_encryption = True

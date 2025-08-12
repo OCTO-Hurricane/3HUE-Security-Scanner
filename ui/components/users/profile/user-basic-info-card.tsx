@@ -5,7 +5,7 @@ import { Card, CardBody, Divider } from "@nextui-org/react";
 import { DateWithTime, InfoField, SnippetChip } from "@/components/ui/entities";
 import { UserDataWithRoles } from "@/types/users";
 
-import { ProwlerShort } from "../../icons";
+import { ThreeHueLogo } from "../../icons";
 
 const TenantIdCopy = ({ id }: { id: string }) => {
   return (
@@ -29,7 +29,7 @@ export const UserBasicInfoCard = ({
       <CardBody>
         <div className="flex items-center gap-4">
           <div className="flex h-10 w-10 items-center justify-center rounded-full border-3 border-black p-1 dark:border-white">
-            <ProwlerShort />
+            <img src="/3HUE-logo-black.png" style={{ width: 32, height: 'auto' }} />
           </div>
           <div className="flex flex-col">
             <span className="text-md font-bold">{name}</span>

@@ -1,18 +1,9 @@
-<p align="center">
-  <img align="center" src="https://github.com/prowler-cloud/prowler/blob/master/docs/img/prowler-logo-black.png#gh-light-mode-only" width="50%" height="50%">
-  <img align="center" src="https://github.com/prowler-cloud/prowler/blob/master/docs/img/prowler-logo-white.png#gh-dark-mode-only" width="50%" height="50%">
-</p>
-<p align="center">
-  <b><i>Prowler</b> is the Open Cloud Security platform trusted by thousands to automate security and compliance in any cloud environment. With hundreds of ready-to-use checks and compliance frameworks, Prowler delivers real-time, customizable monitoring and seamless integrations, making cloud security simple, scalable, and cost-effective for organizations of any size.
-</p>
-<p align="center">
-<b>Learn more at <a href="https://prowler.com">prowler.com</i></b>
-</p>
 
 <p align="center">
-<a href="https://goto.prowler.com/slack"><img width="30" height="30" alt="Prowler community on Slack" src="https://github.com/prowler-cloud/prowler/assets/38561120/3c8b4ec5-6849-41a5-b5e1-52bbb94af73a"></a>
-  <br>
-  <a href="https://goto.prowler.com/slack">Join our Prowler community!</a>
+  <b><i>3HUE Security Agent</b> is the Open Cloud Security platform trusted by thousands to automate security and compliance in any cloud environment. With hundreds of ready-to-use checks and compliance frameworks, Prowler delivers real-time, customizable monitoring and seamless integrations, making cloud security simple, scalable, and cost-effective for organizations of any size.
+</p>
+<p align="center">
+
 </p>
 <hr>
 <p align="center">
@@ -43,9 +34,9 @@
 
 # Description
 
-**Prowler** is an open-source security tool designed to assess and enforce security best practices across AWS, Azure, Google Cloud, and Kubernetes. It supports tasks such as security audits, incident response, continuous monitoring, system hardening, forensic readiness, and remediation processes.
+**3HUE Security Agent** is an open-source security tool designed to assess and enforce security best practices across AWS, Azure, Google Cloud, and Kubernetes. It supports tasks such as security audits, incident response, continuous monitoring, system hardening, forensic readiness, and remediation processes.
 
-Prowler includes hundreds of built-in controls to ensure compliance with standards and frameworks, including:
+3HUE Security Agent includes hundreds of built-in controls to ensure compliance with standards and frameworks, including:
 
 - **Industry Standards:** CIS, NIST 800, NIST CSF, and CISA
 - **Regulatory Compliance and Governance:** RBI, FedRAMP, and PCI-DSS
@@ -55,34 +46,23 @@ Prowler includes hundreds of built-in controls to ensure compliance with standar
 - **National Security Standards:** ENS (Spanish National Security Scheme)
 - **Custom Security Frameworks:** Tailored to your needs
 
-## Prowler CLI and Prowler Cloud
+## 3HUE Security Agent CLI and 3HUE Security Agent Cloud
 
-Prowler offers a Command Line Interface (CLI), known as Prowler Open Source, and an additional service built on top of it, called <a href="https://prowler.com">Prowler Cloud</a>.
+3HUE Security Agent offers a Command Line Interface (CLI), known as Prowler Open Source, and an additional service built on top of it, called 3HUE Security Agent
 
-## Prowler App
+## 3HUE Security Agent App
 
-Prowler App is a web-based application that simplifies running Prowler across your cloud provider accounts. It provides a user-friendly interface to visualize the results and streamline your security assessments.
-
-![Prowler App](docs/img/overview.png)
-
->For more details, refer to the [Prowler App Documentation](https://docs.prowler.com/projects/prowler-open-source/en/latest/#prowler-app-installation)
-
-## Prowler CLI
-
-```console
-prowler <provider>
-```
-![Prowler CLI Execution](docs/img/short-display.png)
+3HUE Security Agent App is a web-based application that simplifies running Prowler across your cloud provider accounts. It provides a user-friendly interface to visualize the results and streamline your security assessments.
 
 
-## Prowler Dashboard
+## 3HUE Security Agent Dashboard
 
 ```console
 prowler dashboard
 ```
-![Prowler Dashboard](docs/img/dashboard.png)
+![3HUE Security Agent Dashboard](docs/img/dashboard.png)
 
-# Prowler at a Glance
+# 3HUE Security Agent at a Glance
 
 | Provider | Checks | Services | [Compliance Frameworks](https://docs.prowler.com/projects/prowler-open-source/en/latest/tutorials/compliance/) | [Categories](https://docs.prowler.com/projects/prowler-open-source/en/latest/tutorials/misc/#categories) |
 |---|---|---|---|---|
@@ -105,11 +85,11 @@ prowler dashboard
 
 # 💻 Installation
 
-## Prowler App
+## 3HUE Security Agent App
 
-Prowler App offers flexible installation methods tailored to various environments:
+3HUE Security Agent App offers flexible installation methods tailored to various environments:
 
-> For detailed instructions on using Prowler App, refer to the [Prowler App Usage Guide](https://docs.prowler.com/projects/prowler-open-source/en/latest/tutorials/prowler-app/).
+> For detailed instructions on using 3HUE Security Agent App, refer to the [3HUE Security Agent App Usage Guide](https://docs.prowler.com/projects/prowler-open-source/en/latest/tutorials/prowler-app/).
 
 ### Docker Compose
 
@@ -127,14 +107,14 @@ docker compose up -d
 
 > Containers are built for `linux/amd64`.
 
-### Configuring Your Workstation for Prowler App
+### Configuring Your Workstation for 3HUE Security Agent App
 
 If your workstation's architecture is incompatible, you can resolve this by:
 
 - **Setting the environment variable**: `DOCKER_DEFAULT_PLATFORM=linux/amd64`
 - **Using the following flag in your Docker command**: `--platform linux/amd64`
 
-> Once configured, access the Prowler App at http://localhost:3000. Sign up using your email and password to get started.
+> Once configured, access the 3HUE Security Agent App at http://localhost:3000. Sign up using your email and password to get started.
 
 ### Common Issues with Docker Pull Installation
 

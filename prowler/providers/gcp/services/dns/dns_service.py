@@ -1,7 +1,6 @@
 from pydantic.v1 import BaseModel
 
 from prowler.lib.logger import logger
-from prowler.providers.gcp.config import DEFAULT_RETRY_ATTEMPTS
 from prowler.providers.gcp.gcp_provider import GcpProvider
 from prowler.providers.gcp.lib.service.service import GCPService
 
@@ -19,7 +18,7 @@ class DNS(GCPService):
             try:
                 request = self.client.managedZones().list(project=project_id)
                 while request is not None:
-                    response = request.execute(num_retries=DEFAULT_RETRY_ATTEMPTS)
+                    response = request.execute()
                     for managed_zone in response.get("managedZones"):
                         self.managed_zones.append(
                             ManagedZone(
@@ -49,7 +48,7 @@ class DNS(GCPService):
             try:
                 request = self.client.policies().list(project=project_id)
                 while request is not None:
-                    response = request.execute(num_retries=DEFAULT_RETRY_ATTEMPTS)
+                    response = request.execute()
 
                     for policy in response.get("policies", []):
                         policy_networks = []

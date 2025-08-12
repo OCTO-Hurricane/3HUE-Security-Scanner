@@ -11,7 +11,7 @@ import { z } from "zod";
 import { authenticate, createNewUser } from "@/actions/auth";
 import { initiateSamlAuth } from "@/actions/integrations/saml";
 import { PasswordRequirementsMessage } from "@/components/auth/oss/password-validator";
-import { NotificationIcon, ProwlerExtended } from "@/components/icons";
+import { NotificationIcon, ThreeHueLogo } from "@/components/icons";
 import { ThemeSwitch } from "@/components/ThemeSwitch";
 import { useToast } from "@/components/ui";
 import { CustomButton, CustomInput } from "@/components/ui/custom";
@@ -188,10 +188,6 @@ export const AuthForm = ({
         <div className="absolute h-full w-full bg-[radial-gradient(#6af400_1px,transparent_1px)] [background-size:16px_16px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_10%,transparent_80%)]"></div>
 
         <div className="relative z-10 flex w-full max-w-sm flex-col gap-4 rounded-large border-1 border-divider bg-white/90 px-8 py-10 shadow-small dark:bg-background/85 md:max-w-md">
-          {/* Prowler Logo */}
-          <div className="absolute -top-[100px] left-1/2 z-10 flex h-fit w-fit -translate-x-1/2">
-            <ProwlerExtended width={300} />
-          </div>
           <div className="flex items-center justify-between">
             <p className="pb-2 text-xl font-medium">
               {type === "sign-in"
@@ -302,12 +298,7 @@ export const AuthForm = ({
                               onChange={(e) => field.onChange(e.target.checked)}
                             >
                               I agree with the&nbsp;
-                              <CustomLink
-                                href="https://prowler.com/terms-of-service/"
-                                size="sm"
-                              >
-                                Terms of Service
-                              </CustomLink>
+                              <span className="opacity-50 cursor-not-allowed">Terms of Service (disabled)</span>
                               &nbsp;of Prowler
                             </Checkbox>
                           </FormControl>
@@ -359,9 +350,7 @@ export const AuthForm = ({
                       content={
                         <div className="flex-inline text-small">
                           Social Login with Google is not enabled.{" "}
-                          <CustomLink href="https://docs.prowler.com/projects/prowler-open-source/en/latest/tutorials/prowler-app-social-login/#google-oauth-configuration">
-                            Read the docs
-                          </CustomLink>
+                          <span className="opacity-50 cursor-not-allowed">Read the docs (disabled)</span>
                         </div>
                       }
                       placement="right-start"
@@ -388,9 +377,7 @@ export const AuthForm = ({
                       content={
                         <div className="flex-inline text-small">
                           Social Login with Github is not enabled.{" "}
-                          <CustomLink href="https://docs.prowler.com/projects/prowler-open-source/en/latest/tutorials/prowler-app-social-login/#github-oauth-configuration">
-                            Read the docs
-                          </CustomLink>
+                          <span className="opacity-50 cursor-not-allowed">Read the docs (disabled)</span>
                         </div>
                       }
                       placement="right-start"

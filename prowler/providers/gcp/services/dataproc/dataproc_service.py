@@ -1,7 +1,6 @@
 from pydantic.v1 import BaseModel
 
 from prowler.lib.logger import logger
-from prowler.providers.gcp.config import DEFAULT_RETRY_ATTEMPTS
 from prowler.providers.gcp.gcp_provider import GcpProvider
 from prowler.providers.gcp.lib.service.service import GCPService
 from prowler.providers.gcp.services.compute.compute_client import compute_client
@@ -25,8 +24,7 @@ class Dataproc(GCPService):
                 )
                 while request is not None:
                     response = request.execute(
-                        http=self.__get_AuthorizedHttp_client__(),
-                        num_retries=DEFAULT_RETRY_ATTEMPTS,
+                        http=self.__get_AuthorizedHttp_client__()
                     )
 
                     for cluster in response.get("clusters", []):

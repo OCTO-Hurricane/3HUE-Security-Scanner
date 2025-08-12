@@ -70,12 +70,11 @@ class TestGCPProvider:
             ),
         ):
             gcp_provider = GcpProvider(
-                retries_max_attempts=None,
-                project_ids=project_id,
-                excluded_project_ids=excluded_project_id,
-                credentials_file=credentials_file,
-                impersonate_service_account=impersonate_service_account,
-                list_project_ids=list_project_id,
+                project_id,
+                excluded_project_id,
+                credentials_file,
+                impersonate_service_account,
+                list_project_id,
                 config_path=default_config_file_path,
                 fixer_config=fixer_config,
                 client_id=client_id,
@@ -147,15 +146,14 @@ class TestGCPProvider:
             ),
         ):
             gcp_provider = GcpProvider(
-                retries_max_attempts=None,
-                organization_id=arguments.organization_id,
-                project_ids=arguments.project_id,
-                excluded_project_ids=arguments.excluded_project_id,
-                credentials_file=arguments.credentials_file,
-                impersonate_service_account=arguments.impersonate_service_account,
-                list_project_ids=arguments.list_project_id,
-                config_path=arguments.config_file,
-                fixer_config=arguments.fixer_config,
+                arguments.organization_id,
+                arguments.project_id,
+                arguments.excluded_project_id,
+                arguments.credentials_file,
+                arguments.impersonate_service_account,
+                arguments.list_project_id,
+                arguments.config_file,
+                arguments.fixer_config,
                 client_id="test-client-id",
                 client_secret="test-client-secret",
                 refresh_token="test-refresh-token",
@@ -231,15 +229,14 @@ class TestGCPProvider:
             ),
         ):
             gcp_provider = GcpProvider(
-                retries_max_attempts=None,
-                organization_id=arguments.organization_id,
-                project_ids=arguments.project_id,
-                excluded_project_ids=arguments.excluded_project_id,
-                credentials_file=arguments.credentials_file,
-                impersonate_service_account=arguments.impersonate_service_account,
-                list_project_ids=arguments.list_project_id,
-                config_path=arguments.config_file,
-                fixer_config=arguments.fixer_config,
+                arguments.organization_id,
+                arguments.project_id,
+                arguments.excluded_project_id,
+                arguments.credentials_file,
+                arguments.impersonate_service_account,
+                arguments.list_project_id,
+                arguments.config_file,
+                arguments.fixer_config,
                 client_id=None,
                 client_secret=None,
                 refresh_token=None,
@@ -302,15 +299,14 @@ class TestGCPProvider:
             ),
         ):
             gcp_provider = GcpProvider(
-                retries_max_attempts=None,
-                organization_id=arguments.organization_id,
-                project_ids=arguments.project_id,
-                excluded_project_ids=arguments.excluded_project_id,
-                credentials_file=arguments.credentials_file,
-                impersonate_service_account=arguments.impersonate_service_account,
-                list_project_ids=arguments.list_project_id,
-                config_path=arguments.config_file,
-                fixer_config=arguments.fixer_config,
+                arguments.organization_id,
+                arguments.project_id,
+                arguments.excluded_project_id,
+                arguments.credentials_file,
+                arguments.impersonate_service_account,
+                arguments.list_project_id,
+                arguments.config_file,
+                arguments.fixer_config,
                 client_id=None,
                 client_secret=None,
                 refresh_token=None,
@@ -406,15 +402,14 @@ class TestGCPProvider:
             ),
         ):
             gcp_provider = GcpProvider(
-                retries_max_attempts=None,
-                organization_id=arguments.organization_id,
-                project_ids=arguments.project_id,
-                excluded_project_ids=arguments.excluded_project_id,
-                credentials_file=arguments.credentials_file,
-                impersonate_service_account=arguments.impersonate_service_account,
-                list_project_ids=arguments.list_project_id,
-                config_path=arguments.config_file,
-                fixer_config=arguments.fixer_config,
+                arguments.organization_id,
+                arguments.project_id,
+                arguments.excluded_project_id,
+                arguments.credentials_file,
+                arguments.impersonate_service_account,
+                arguments.list_project_id,
+                arguments.config_file,
+                arguments.fixer_config,
                 client_id=None,
                 client_secret=None,
                 refresh_token=None,
@@ -481,15 +476,14 @@ class TestGCPProvider:
         ):
             with pytest.raises(Exception) as e:
                 GcpProvider(
-                    retries_max_attempts=None,
-                    organization_id=arguments.organization_id,
-                    project_ids=arguments.project_id,
-                    excluded_project_ids=arguments.excluded_project_id,
-                    credentials_file=arguments.credentials_file,
-                    impersonate_service_account=arguments.impersonate_service_account,
-                    list_project_ids=arguments.list_project_id,
-                    config_path=arguments.config_file,
-                    fixer_config=arguments.fixer_config,
+                    arguments.organization_id,
+                    arguments.project_id,
+                    arguments.excluded_project_id,
+                    arguments.credentials_file,
+                    arguments.impersonate_service_account,
+                    arguments.list_project_id,
+                    arguments.config_file,
+                    arguments.fixer_config,
                     client_id=None,
                     client_secret=None,
                     refresh_token=None,
@@ -557,15 +551,14 @@ class TestGCPProvider:
             ),
         ):
             gcp_provider = GcpProvider(
-                retries_max_attempts=None,
-                organization_id=arguments.organization_id,
-                project_ids=arguments.project_id,
-                excluded_project_ids=arguments.excluded_project_id,
-                credentials_file=arguments.credentials_file,
-                impersonate_service_account=arguments.impersonate_service_account,
-                list_project_ids=arguments.list_project_id,
-                config_path=arguments.config_file,
-                fixer_config=arguments.fixer_config,
+                arguments.organization_id,
+                arguments.project_id,
+                arguments.excluded_project_id,
+                arguments.credentials_file,
+                arguments.impersonate_service_account,
+                arguments.list_project_id,
+                arguments.config_file,
+                arguments.fixer_config,
                 client_id=None,
                 client_secret=None,
                 refresh_token=None,
@@ -626,15 +619,14 @@ class TestGCPProvider:
             ),
         ):
             gcp_provider = GcpProvider(
-                retries_max_attempts=None,
-                organization_id=arguments.organization_id,
-                project_ids=arguments.project_id,
-                excluded_project_ids=arguments.excluded_project_id,
-                credentials_file=arguments.credentials_file,
-                impersonate_service_account=arguments.impersonate_service_account,
-                list_project_ids=arguments.list_project_id,
-                config_path=arguments.config_file,
-                fixer_config=arguments.fixer_config,
+                arguments.organization_id,
+                arguments.project_id,
+                arguments.excluded_project_id,
+                arguments.credentials_file,
+                arguments.impersonate_service_account,
+                arguments.list_project_id,
+                arguments.config_file,
+                arguments.fixer_config,
                 client_id=None,
                 client_secret=None,
                 refresh_token=None,
@@ -704,15 +696,14 @@ class TestGCPProvider:
             ),
         ):
             gcp_provider = GcpProvider(
-                retries_max_attempts=None,
-                organization_id=arguments.organization_id,
-                project_ids=arguments.project_id,
-                excluded_project_ids=arguments.excluded_project_id,
-                credentials_file=arguments.credentials_file,
-                impersonate_service_account=arguments.impersonate_service_account,
-                list_project_ids=arguments.list_project_id,
-                config_path=arguments.config_file,
-                fixer_config=arguments.fixer_config,
+                arguments.organization_id,
+                arguments.project_id,
+                arguments.excluded_project_id,
+                arguments.credentials_file,
+                arguments.impersonate_service_account,
+                arguments.list_project_id,
+                arguments.config_file,
+                arguments.fixer_config,
                 client_id=None,
                 client_secret=None,
                 refresh_token=None,
@@ -790,15 +781,14 @@ class TestGCPProvider:
             ),
         ):
             gcp_provider = GcpProvider(
-                retries_max_attempts=None,
-                organization_id=arguments.organization_id,
-                project_ids=arguments.project_id,
-                excluded_project_ids=arguments.excluded_project_id,
-                credentials_file=arguments.credentials_file,
-                impersonate_service_account=arguments.impersonate_service_account,
-                list_project_ids=arguments.list_project_id,
-                config_path=arguments.config_file,
-                fixer_config=arguments.fixer_config,
+                arguments.organization_id,
+                arguments.project_id,
+                arguments.excluded_project_id,
+                arguments.credentials_file,
+                arguments.impersonate_service_account,
+                arguments.list_project_id,
+                arguments.config_file,
+                arguments.fixer_config,
                 client_id=None,
                 client_secret=None,
                 refresh_token=None,
@@ -819,7 +809,7 @@ class TestGCPProvider:
 
     def test_init_only_client_id(self):
         with pytest.raises(Exception) as e:
-            GcpProvider(retries_max_attempts=None, client_id="test-client-id")
+            GcpProvider(client_id="test-client-id")
         assert "client_secret and refresh_token are required" in e.value.args[0]
 
     def test_validate_static_arguments(self):
@@ -947,43 +937,3 @@ class TestGCPProvider:
                 )
 
             assert e.type == GCPInvalidProviderIdError
-
-    def test_discovery_build_with_retry(self):
-        """Test that discovery.build includes num_retries parameter"""
-        from prowler.providers.gcp.config import DEFAULT_RETRY_ATTEMPTS
-        from prowler.providers.gcp.lib.service.service import GCPService
-
-        with patch("googleapiclient.discovery.build") as mock_build:
-            mock_build.return_value = MagicMock()
-
-            # Create a mock provider with required attributes
-            mock_provider = MagicMock()
-            mock_provider.project_ids = ["test-project"]
-            mock_provider.session = MagicMock()
-            mock_provider.projects = {}
-            mock_provider.default_project_id = "test-project"
-            mock_provider.audit_config = {}
-            mock_provider.fixer_config = {}
-
-            # This should call discovery.build with num_retries=DEFAULT_RETRY_ATTEMPTS
-            GCPService("testservice", mock_provider)
-
-            # Verify that discovery.build was called with num_retries=DEFAULT_RETRY_ATTEMPTS
-            mock_build.assert_called()
-            found_retry_param = False
-            for call in mock_build.call_args_list:
-                if (
-                    "num_retries" in call[1]
-                    and call[1]["num_retries"] == DEFAULT_RETRY_ATTEMPTS
-                ):
-                    found_retry_param = True
-                    break
-            assert (
-                found_retry_param
-            ), "discovery.build was not called with num_retries parameter"
-
-    def test_config_import(self):
-        """Test that config values can be imported correctly"""
-        from prowler.providers.gcp.config import DEFAULT_RETRY_ATTEMPTS
-
-        assert DEFAULT_RETRY_ATTEMPTS == 3

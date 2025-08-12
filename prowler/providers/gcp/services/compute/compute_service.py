@@ -1,7 +1,6 @@
 from pydantic.v1 import BaseModel
 
 from prowler.lib.logger import logger
-from prowler.providers.gcp.config import DEFAULT_RETRY_ATTEMPTS
 from prowler.providers.gcp.gcp_provider import GcpProvider
 from prowler.providers.gcp.lib.service.service import GCPService
 
@@ -34,7 +33,7 @@ class Compute(GCPService):
             try:
                 request = self.client.regions().list(project=project_id)
                 while request is not None:
-                    response = request.execute(num_retries=DEFAULT_RETRY_ATTEMPTS)
+                    response = request.execute()
 
                     for region in response.get("items", []):
                         self.regions.add(region["name"])
@@ -52,7 +51,7 @@ class Compute(GCPService):
             try:
                 request = self.client.zones().list(project=project_id)
                 while request is not None:
-                    response = request.execute(num_retries=DEFAULT_RETRY_ATTEMPTS)
+                    response = request.execute()
 
                     for zone in response.get("items", []):
                         self.zones.add(zone["name"])
@@ -69,11 +68,7 @@ class Compute(GCPService):
         for project_id in self.project_ids:
             try:
                 enable_oslogin = False
-                response = (
-                    self.client.projects()
-                    .get(project=project_id)
-                    .execute(num_retries=DEFAULT_RETRY_ATTEMPTS)
-                )
+                response = self.client.projects().get(project=project_id).execute()
                 for item in response["commonInstanceMetadata"].get("items", []):
                     if item["key"] == "enable-oslogin" and item["value"] == "TRUE":
                         enable_oslogin = True
@@ -91,8 +86,7 @@ class Compute(GCPService):
                 request = self.client.instances().list(project=project_id, zone=zone)
                 while request is not None:
                     response = request.execute(
-                        http=self.__get_AuthorizedHttp_client__(),
-                        num_retries=DEFAULT_RETRY_ATTEMPTS,
+                        http=self.__get_AuthorizedHttp_client__()
                     )
 
                     for instance in response.get("items", []):
@@ -150,7 +144,7 @@ class Compute(GCPService):
             try:
                 request = self.client.networks().list(project=project_id)
                 while request is not None:
-                    response = request.execute(num_retries=DEFAULT_RETRY_ATTEMPTS)
+                    response = request.execute()
                     for network in response.get("items", []):
                         subnet_mode = (
                             "legacy"
@@ -184,8 +178,7 @@ class Compute(GCPService):
                 )
                 while request is not None:
                     response = request.execute(
-                        http=self.__get_AuthorizedHttp_client__(),
-                        num_retries=DEFAULT_RETRY_ATTEMPTS,
+                        http=self.__get_AuthorizedHttp_client__()
                     )
                     for subnet in response.get("items", []):
                         self.subnets.append(
@@ -215,8 +208,7 @@ class Compute(GCPService):
                 )
                 while request is not None:
                     response = request.execute(
-                        http=self.__get_AuthorizedHttp_client__(),
-                        num_retries=DEFAULT_RETRY_ATTEMPTS,
+                        http=self.__get_AuthorizedHttp_client__()
                     )
                     for address in response.get("items", []):
                         self.addresses.append(
@@ -243,7 +235,7 @@ class Compute(GCPService):
             try:
                 request = self.client.firewalls().list(project=project_id)
                 while request is not None:
-                    response = request.execute(num_retries=DEFAULT_RETRY_ATTEMPTS)
+                    response = request.execute()
 
                     for firewall in response.get("items", []):
                         self.firewalls.append(
@@ -271,7 +263,7 @@ class Compute(GCPService):
                 # Global URL maps
                 request = self.client.urlMaps().list(project=project_id)
                 while request is not None:
-                    response = request.execute(num_retries=DEFAULT_RETRY_ATTEMPTS)
+                    response = request.execute()
                     for urlmap in response.get("items", []):
                         self.load_balancers.append(
                             LoadBalancer(
@@ -296,7 +288,7 @@ class Compute(GCPService):
                         project=project_id, region=region
                     )
                     while request is not None:
-                        response = request.execute(num_retries=DEFAULT_RETRY_ATTEMPTS)
+                        response = request.execute()
                         for urlmap in response.get("items", []):
                             self.load_balancers.append(
                                 LoadBalancer(
@@ -330,7 +322,7 @@ class Compute(GCPService):
                                 region=region,
                                 backendService=backend_service_name,
                             )
-                            .execute(num_retries=DEFAULT_RETRY_ATTEMPTS)
+                            .execute()
                         )
                     else:
                         response = (
@@ -339,7 +331,7 @@ class Compute(GCPService):
                                 project=balancer.project_id,
                                 backendService=backend_service_name,
                             )
-                            .execute(num_retries=DEFAULT_RETRY_ATTEMPTS)
+                            .execute()
                         )
 
                     balancer.logging = response.get("logConfig", {}).get(

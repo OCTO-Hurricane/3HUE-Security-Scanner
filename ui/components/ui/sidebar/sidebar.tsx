@@ -3,8 +3,7 @@
 import clsx from "clsx";
 import Link from "next/link";
 
-import { ProwlerShort } from "@/components/icons";
-import { ProwlerExtended } from "@/components/icons";
+import { ThreeHueLogo } from "@/components/icons";
 import { useSidebar } from "@/hooks/use-sidebar";
 import { useStore } from "@/hooks/use-store";
 import { cn } from "@/lib/utils";
@@ -48,20 +47,8 @@ export function Sidebar() {
               },
             )}
           >
-            <div
-              className={clsx({
-                hidden: isOpen,
-              })}
-            >
-              <ProwlerShort />
-            </div>
-            <div
-              className={clsx({
-                hidden: !isOpen,
-                "!mt-0": isOpen,
-              })}
-            >
-              <ProwlerExtended />
+            <div className="flex items-center justify-center w-full">
+              <img src="/3HUE-logo-black.png" style={{ width: isOpen ? 120 : 48, height: 'auto' }} />
             </div>
           </Link>
         </Button>

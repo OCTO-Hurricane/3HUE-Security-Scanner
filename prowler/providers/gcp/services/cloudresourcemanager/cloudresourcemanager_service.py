@@ -1,7 +1,6 @@
 from pydantic.v1 import BaseModel
 
 from prowler.lib.logger import logger
-from prowler.providers.gcp.config import DEFAULT_RETRY_ATTEMPTS
 from prowler.providers.gcp.gcp_provider import GcpProvider
 from prowler.providers.gcp.lib.service.service import GCPService
 
@@ -20,9 +19,7 @@ class CloudResourceManager(GCPService):
         for project_id in self.project_ids:
             try:
                 policy = (
-                    self.client.projects()
-                    .getIamPolicy(resource=project_id)
-                    .execute(num_retries=DEFAULT_RETRY_ATTEMPTS)
+                    self.client.projects().getIamPolicy(resource=project_id).execute()
                 )
                 audit_logging = False
                 if policy.get("auditConfigs"):
@@ -46,11 +43,7 @@ class CloudResourceManager(GCPService):
     def _get_organizations(self):
         try:
             if self.project_ids:
-                response = (
-                    self.client.organizations()
-                    .search()
-                    .execute(num_retries=DEFAULT_RETRY_ATTEMPTS)
-                )
+                response = self.client.organizations().search().execute()
                 for org in response.get("organizations", []):
                     self.organizations.append(
                         Organization(

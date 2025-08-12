@@ -1,6 +1,6 @@
 # Description
 
-This repository hosts the UI component for Prowler, providing a user-friendly web interface to interact seamlessly with Prowler's features.
+This repository hosts the UI component for 3HUE Security Agent, providing a user-friendly web interface to interact seamlessly with its features.
 
 
 ## 🚀 Production deployment

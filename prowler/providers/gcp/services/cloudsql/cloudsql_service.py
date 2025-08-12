@@ -1,7 +1,6 @@
 from pydantic.v1 import BaseModel
 
 from prowler.lib.logger import logger
-from prowler.providers.gcp.config import DEFAULT_RETRY_ATTEMPTS
 from prowler.providers.gcp.gcp_provider import GcpProvider
 from prowler.providers.gcp.lib.service.service import GCPService
 
@@ -17,7 +16,7 @@ class CloudSQL(GCPService):
             try:
                 request = self.client.instances().list(project=project_id)
                 while request is not None:
-                    response = request.execute(num_retries=DEFAULT_RETRY_ATTEMPTS)
+                    response = request.execute()
 
                     for instance in response.get("items", []):
                         public_ip = False

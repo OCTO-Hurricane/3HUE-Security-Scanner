@@ -180,24 +180,18 @@ export const getMenuList = (pathname: string): GroupProps[] => {
           icon: SupportIcon,
           submenus: [
             {
-              href: "https://docs.prowler.com/",
-              target: "_blank",
-              label: "Documentation",
+              href: "#",
+              label: "Documentation (disabled)",
               icon: DocIcon,
             },
             {
-              href:
-                process.env.NEXT_PUBLIC_IS_CLOUD_ENV === "true"
-                  ? "https://api.prowler.com/api/v1/docs"
-                  : `${process.env.NEXT_PUBLIC_API_DOCS_URL}`,
-              target: "_blank",
-              label: "API reference",
+              href: "#",
+              label: "API reference (disabled)",
               icon: APIdocIcon,
             },
             {
-              href: "https://github.com/prowler-cloud/prowler/issues",
-              target: "_blank",
-              label: "Support",
+              href: "#",
+              label: "Support (disabled)",
               icon: CircleHelpIcon,
             },
           ],

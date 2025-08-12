@@ -226,17 +226,12 @@ export const Menu = ({ isOpen }: { isOpen: boolean }) => {
         {process.env.NEXT_PUBLIC_IS_CLOUD_ENV === "true" && (
           <>
             <Divider orientation="vertical" />
-            <Link
-              href="https://status.prowler.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-1"
-            >
+            <span className="flex items-center gap-1 opacity-50 cursor-not-allowed">
               <InfoIcon size={16} />
-              <span className="text-muted-foreground font-normal opacity-80 transition-opacity hover:font-bold hover:opacity-100">
-                Service Status
+              <span className="text-muted-foreground font-normal opacity-80 transition-opacity">
+                Service Status (disabled)
               </span>
-            </Link>
+            </span>
           </>
         )}
       </div>

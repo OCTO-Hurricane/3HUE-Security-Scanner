@@ -108,7 +108,7 @@ export async function verifyLoadingState(page: Page) {
 }
 
 export async function verifyLoginFormElements(page: Page) {
-  await expect(page).toHaveTitle(/Prowler/);
+  await expect(page).toHaveTitle(/3HUE Security Agent/);
   await expect(page.locator('svg[width="300"]')).toBeVisible();
 
   // Verify form elements

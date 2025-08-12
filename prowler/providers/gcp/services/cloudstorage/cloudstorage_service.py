@@ -3,7 +3,6 @@ from typing import Optional
 from pydantic.v1 import BaseModel
 
 from prowler.lib.logger import logger
-from prowler.providers.gcp.config import DEFAULT_RETRY_ATTEMPTS
 from prowler.providers.gcp.gcp_provider import GcpProvider
 from prowler.providers.gcp.lib.service.service import GCPService
 
@@ -19,12 +18,12 @@ class CloudStorage(GCPService):
             try:
                 request = self.client.buckets().list(project=project_id)
                 while request is not None:
-                    response = request.execute(num_retries=DEFAULT_RETRY_ATTEMPTS)
+                    response = request.execute()
                     for bucket in response.get("items", []):
                         bucket_iam = (
                             self.client.buckets()
                             .getIamPolicy(bucket=bucket["id"])
-                            .execute(num_retries=DEFAULT_RETRY_ATTEMPTS)["bindings"]
+                            .execute()["bindings"]
                         )
                         public = False
                         if "allAuthenticatedUsers" in str(
