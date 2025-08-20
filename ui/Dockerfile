@@ -1,4 +1,4 @@
-FROM node:20-alpine AS base
+FROM oven/bun:1.0.25-alpine AS base
 
 LABEL maintainer="https://github.com/prowler-cloud"
 # Install dependencies only when needed
@@ -9,9 +9,9 @@ RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
 # Install dependencies based on the preferred package manager
-COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* ./
+COPY package.json bun.lockb* ./
 RUN \
-  if [ -f package-lock.json ]; then npm install; \
+  if [ -f bun.lockb ]; then bun install; \
   else echo "Lockfile not found." && exit 1; \
   fi
 
@@ -34,7 +34,7 @@ ARG NEXT_PUBLIC_API_BASE_URL
 ENV NEXT_PUBLIC_API_BASE_URL=${NEXT_PUBLIC_API_BASE_URL}
 
 RUN \
-  if [ -f package-lock.json ]; then npm run build; \
+  if [ -f bun.lockb ]; then bun run build; \
   else echo "Lockfile not found." && exit 1; \
   fi
 
@@ -48,7 +48,7 @@ ENV NEXT_TELEMETRY_DISABLED=1
 COPY --from=builder /app /app
 
 # Run development server with hot-reloading
-CMD ["npm", "run", "dev"]
+CMD ["bun", "run", "dev"]
 
 # Production stage
 FROM base AS prod
@@ -73,4 +73,4 @@ ENV PORT=3000
 ENV HOSTNAME="0.0.0.0"
 # server.js is created by next build from the standalone output
 # https://nextjs.org/docs/pages/api-reference/next-config-js/output
-CMD ["node", "server.js"]
+CMD ["bun", "server.js"]
