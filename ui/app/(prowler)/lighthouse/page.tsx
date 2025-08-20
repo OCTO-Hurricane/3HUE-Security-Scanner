@@ -10,7 +10,7 @@ export default async function AIChatbot() {
   const isActive = config?.attributes?.is_active ?? false;
 
   return (
-    <ContentLayout title="Lighthouse AI" icon={<LighthouseIcon />}>
+  <ContentLayout title="3HUE-Security Vision" icon={<LighthouseIcon />}>
       <Chat hasConfig={hasConfig} isActive={isActive} />
     </ContentLayout>
   );

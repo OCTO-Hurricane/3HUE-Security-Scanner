@@ -23,24 +23,24 @@ module.exports = {
           theme: {
             midnight: "#030921",
             pale: "#f3fcff",
-            green: "#8ce112",
+            green: "#06BDfa", // custom blue accent
             purple: "#5001d0",
             coral: "#ff5356",
             orange: "#f69000",
             yellow: "#ffdf16",
           },
           blue: {
-            800: "#1e293bff",
-            400: "#1A202C",
+            800: "#1e40af",
+            400: "#3b82f6",
           },
           grey: {
-            medium: "#353a4d",
-            light: "#868994",
-            600: "#64748b",
+            medium: "#64748b",
+            light: "#e0e7ef",
+            600: "#475569",
           },
           green: {
-            DEFAULT: "#9FD655",
-            medium: "#09BF3D",
+            DEFAULT: "#06BDfa", // custom blue accent
+            medium: "#06BDfa", // custom blue accent
           },
           black: {
             DEFAULT: "#000",
@@ -194,17 +194,17 @@ module.exports = {
         dark: {
           colors: {
             primary: {
-              DEFAULT: "#9FD655",
+              DEFAULT: "#06BDfa", // custom blue accent
               foreground: "#000000",
             },
-            focus: "#9FD655",
+            focus: "#06BDfa", // custom blue accent
             background: "#030921",
           },
         },
         light: {
           colors: {
             primary: {
-              DEFAULT: "#9FD655",
+              DEFAULT: "#06BDfa", // custom blue accent
               foreground: "#000000",
             },
           },
