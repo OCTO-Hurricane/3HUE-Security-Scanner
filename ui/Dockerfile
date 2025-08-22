@@ -1,76 +1,53 @@
-FROM oven/bun:1.0.25-alpine AS base
-
-LABEL maintainer="https://github.com/prowler-cloud"
-# Install dependencies only when needed
+# ---- Base Stage ----
+# Using the official Bun image as our foundation
+FROM oven/bun:1-alpine AS base
+WORKDIR /app
+ 
+# ---- Dependencies Stage ----
+# This stage only runs when your package.json changes
 FROM base AS deps
-# Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
-#hadolint ignore=DL3018
-RUN apk add --no-cache libc6-compat
-WORKDIR /app
-
-# Install dependencies based on the preferred package manager
-COPY package.json bun.lockb* ./
-RUN \
-  if [ -f bun.lockb ]; then bun install; \
-  else echo "Lockfile not found." && exit 1; \
-  fi
-
-
-# Rebuild the source code only when needed
+COPY package.json ./
+# Running the install command directly and reliably. Bun creates a bun.lockb file here.
+RUN bun install
+ 
+# ---- Builder Stage ----
+# This stage builds your production-ready app
 FROM base AS builder
-WORKDIR /app
+# Copy the installed dependencies from the 'deps' stage
 COPY --from=deps /app/node_modules ./node_modules
+# Copy the rest of your application code
 COPY . .
-
-# Next.js collects completely anonymous telemetry data about general usage.
-# Learn more here: https://nextjs.org/telemetry
-# Uncomment the following line in case you want to disable telemetry during the build.
+# Disable Next.js telemetry
 ENV NEXT_TELEMETRY_DISABLED=1
-ARG NEXT_PUBLIC_PROWLER_RELEASE_VERSION
-ENV NEXT_PUBLIC_PROWLER_RELEASE_VERSION=${NEXT_PUBLIC_PROWLER_RELEASE_VERSION}
-ARG NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID
-ENV NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID=${NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID}
-ARG NEXT_PUBLIC_API_BASE_URL
-ENV NEXT_PUBLIC_API_BASE_URL=${NEXT_PUBLIC_API_BASE_URL}
-
-RUN \
-  if [ -f bun.lockb ]; then bun run build; \
-  else echo "Lockfile not found." && exit 1; \
-  fi
-
-# Development stage
+# Run the build command with Bun
+RUN bun run build
+ 
+# ---- Development Stage ----
+# This is the target your docker-compose-dev.yml file will use
 FROM base AS dev
-WORKDIR /app
-
-# Set up environment for development
 ENV NODE_ENV=development
-ENV NEXT_TELEMETRY_DISABLED=1
-COPY --from=builder /app /app
-
-# Run development server with hot-reloading
+# Copy the installed dependencies from the 'deps' stage
+COPY --from=deps /app/node_modules ./node_modules
+# Copy the rest of your application code
+COPY . .
+EXPOSE 3000
+# Starting the dev server with Bun
 CMD ["bun", "run", "dev"]
-
-# Production stage
+ 
+# ---- Production Stage (for reference, not used in dev) ----
 FROM base AS prod
 WORKDIR /app
-
-# Set up environment for production
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
-
+# Create a non-root user for security
 RUN addgroup --system --gid 1001 nodejs &&\
-adduser --system --uid 1001 nextjs
-
+    adduser --system --uid 1001 nextjs
+# Copy only the necessary built files from the 'builder' stage
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 COPY --from=builder --chown=nextjs:nodejs /app/public ./public
-
 USER nextjs
-
 EXPOSE 3000
-
 ENV PORT=3000
 ENV HOSTNAME="0.0.0.0"
-# server.js is created by next build from the standalone output
-# https://nextjs.org/docs/pages/api-reference/next-config-js/output
-CMD ["bun", "server.js"]
+CMD ["bun", "start"]
