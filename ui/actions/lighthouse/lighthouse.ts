@@ -93,7 +93,8 @@ export const createLighthouseConfig = async (config: {
 
 export const getLighthouseConfig = async () => {
   const headers = await getAuthHeaders({ contentType: false });
-  const url = new URL(`${apiBaseUrl}/lighthouse-configurations`);
+  const baseUrl = apiBaseUrl || 'http://localhost:8080/api/v1';
+  const url = new URL(`${baseUrl}/lighthouse-configurations`);
 
   try {
     const response = await fetch(url.toString(), {

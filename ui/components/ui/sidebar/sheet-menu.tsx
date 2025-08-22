@@ -1,3 +1,5 @@
+"use client";
+import { useTheme } from "next-themes";
 import { MenuIcon } from "lucide-react";
 import Link from "next/link";
 
@@ -15,6 +17,7 @@ import { Menu } from "@/components/ui/sidebar/menu";
 import { Button } from "../button/button";
 
 export function SheetMenu() {
+  const { theme } = useTheme();
   return (
     <Sheet>
       <SheetTrigger className="lg:hidden" asChild>
@@ -35,7 +38,7 @@ export function SheetMenu() {
             asChild
           >
             <Link href="/" className="flex items-center gap-2">
-              <img src="/3HUE-logo-black.png" style={{ width: 80, height: 'auto' }} />
+              <img src={theme === "dark" ? "/3HUE-logo-dark.png" : "/3HUE-logo-white.png"} style={{ width: 80, height: 'auto' }} />
             </Link>
           </Button>
         </SheetHeader>

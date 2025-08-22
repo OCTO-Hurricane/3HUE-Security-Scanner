@@ -58,7 +58,10 @@ export async function authenticate(
 export const createNewUser = async (
   formData: z.infer<typeof formSchemaSignUp>,
 ) => {
-  const url = new URL(`${apiBaseUrl}/users`);
+  // Debug: log apiBaseUrl
+  console.log('apiBaseUrl:', apiBaseUrl);
+  const baseUrl = apiBaseUrl || 'http://localhost:8080/api/v1';
+  const url = new URL(`${baseUrl}/users`);
 
   if (formData.invitationToken) {
     url.searchParams.append("invitation_token", formData.invitationToken);
@@ -105,7 +108,10 @@ export const createNewUser = async (
 };
 
 export const getToken = async (formData: z.infer<typeof formSchemaSignIn>) => {
-  const url = new URL(`${apiBaseUrl}/tokens`);
+  // Debug: log apiBaseUrl
+  console.log('apiBaseUrl (sign in):', apiBaseUrl);
+  const baseUrl = apiBaseUrl || 'http://localhost:8080/api/v1';
+  const url = new URL(`${baseUrl}/tokens`);
 
   const bodyData = {
     data: {
@@ -118,6 +124,9 @@ export const getToken = async (formData: z.infer<typeof formSchemaSignIn>) => {
   };
 
   try {
+    // Add timeout to fetch
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 10000); // 10 seconds
     const response = await fetch(url.toString(), {
       method: "POST",
       headers: {
@@ -125,25 +134,33 @@ export const getToken = async (formData: z.infer<typeof formSchemaSignIn>) => {
         Accept: "application/vnd.api+json",
       },
       body: JSON.stringify(bodyData),
+      signal: controller.signal,
     });
+    clearTimeout(timeout);
 
     if (!response.ok) return null;
 
     const parsedResponse = await response.json();
 
-    const accessToken = parsedResponse.data.attributes.access;
-    const refreshToken = parsedResponse.data.attributes.refresh;
+    const accessToken = parsedResponse.data?.attributes?.access;
+    const refreshToken = parsedResponse.data?.attributes?.refresh;
     return {
       accessToken,
       refreshToken,
     };
   } catch (error) {
+    if (typeof error === "object" && error !== null && "name" in error && (error as any).name === "AbortError") {
+      throw new Error("Request timed out. Server is too slow or unreachable.");
+    }
     throw new Error("Error in trying to get token");
   }
 };
 
 export const getUserByMe = async (accessToken: string) => {
-  const url = new URL(`${apiBaseUrl}/users/me?include=roles`);
+  // Debug: log apiBaseUrl
+  console.log('apiBaseUrl (getUserByMe):', apiBaseUrl);
+  const baseUrl = apiBaseUrl || 'http://localhost:8080/api/v1';
+  const url = new URL(`${baseUrl}/users/me?include=roles`);
 
   try {
     const response = await fetch(url.toString(), {

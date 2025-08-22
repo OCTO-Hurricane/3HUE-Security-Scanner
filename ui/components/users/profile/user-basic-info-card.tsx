@@ -1,4 +1,6 @@
 "use client";
+import { useTheme } from "next-themes";
+"use client";
 
 import { Card, CardBody, Divider } from "@nextui-org/react";
 
@@ -16,6 +18,7 @@ const TenantIdCopy = ({ id }: { id: string }) => {
 };
 
 export const UserBasicInfoCard = ({
+  const { theme } = useTheme();
   user,
   tenantId,
 }: {
@@ -29,7 +32,7 @@ export const UserBasicInfoCard = ({
       <CardBody>
         <div className="flex items-center gap-4">
           <div className="flex h-10 w-10 items-center justify-center rounded-full border-3 border-black p-1 dark:border-white">
-            <img src="/3HUE-logo-black.png" style={{ width: 32, height: 'auto' }} />
+            <img src={theme === "dark" ? "/3HUE-logo-dark.png" : "/3HUE-logo-white.png"} style={{ width: 32, height: 'auto' }} />
           </div>
           <div className="flex flex-col">
             <span className="text-md font-bold">{name}</span>

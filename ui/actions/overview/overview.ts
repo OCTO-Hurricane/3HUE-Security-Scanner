@@ -14,7 +14,8 @@ export const getProvidersOverview = async ({
 
   if (isNaN(Number(page)) || page < 1) redirect("/providers-overview");
 
-  const url = new URL(`${apiBaseUrl}/overviews/providers`);
+  const baseUrl = apiBaseUrl || 'http://localhost:8080/api/v1';
+  const url = new URL(`${baseUrl}/overviews/providers`);
 
   if (page) url.searchParams.append("page[number]", page.toString());
   if (query) url.searchParams.append("filter[search]", query);
@@ -53,7 +54,7 @@ export const getFindingsByStatus = async ({
 
   if (isNaN(Number(page)) || page < 1) redirect("/");
 
-  const url = new URL(`${apiBaseUrl}/overviews/findings`);
+  const url = new URL(`${apiBaseUrl || 'http://localhost:8080/api/v1'}/overviews/findings`);
 
   if (page) url.searchParams.append("page[number]", page.toString());
   if (query) url.searchParams.append("filter[search]", query);
@@ -96,7 +97,7 @@ export const getFindingsBySeverity = async ({
 
   if (isNaN(Number(page)) || page < 1) redirect("/");
 
-  const url = new URL(`${apiBaseUrl}/overviews/findings_severity`);
+  const url = new URL(`${apiBaseUrl || 'http://localhost:8080/api/v1'}/overviews/findings_severity`);
 
   if (page) url.searchParams.append("page[number]", page.toString());
   if (query) url.searchParams.append("filter[search]", query);

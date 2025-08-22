@@ -57,7 +57,8 @@ export const getScans = async ({
 export const getScansByState = async () => {
   const headers = await getAuthHeaders({ contentType: false });
 
-  const url = new URL(`${apiBaseUrl}/scans`);
+  const baseUrl = apiBaseUrl || 'http://localhost:8080/api/v1';
+  const url = new URL(`${baseUrl}/scans`);
 
   // Request only the necessary fields to optimize the response
   url.searchParams.append("fields[scans]", "state");

@@ -57,7 +57,7 @@ export const getLatestFindings = async ({
     redirect("findings?include=resources,scan.provider");
 
   const url = new URL(
-    `${apiBaseUrl}/findings/latest?include=resources,scan.provider`,
+  `${apiBaseUrl || 'http://localhost:8080/api/v1'}/findings/latest?include=resources,scan.provider`,
   );
 
   if (page) url.searchParams.append("page[number]", page.toString());

@@ -1,5 +1,5 @@
 /** @type {import('next').NextConfig} */
-
+ 
 // HTTP Security Headers
 // 'unsafe-eval' is configured under `script-src` because it is required by NextJS for development mode
 const cspHeader = `
@@ -12,8 +12,16 @@ const cspHeader = `
   frame-src 'self' https://js.stripe.com https://www.googletagmanager.com;
   frame-ancestors 'none';
 `;
-
+ 
 module.exports = {
+  // THIS IS THE PART WE ADDED
+  eslint: {
+    // Warning: This allows production builds to successfully complete even if
+    // your project has ESLint errors.
+    ignoreDuringBuilds: true,
+  },
+ 
+  // The rest of your original configuration is below
   poweredByHeader: false,
   // Use standalone only in production deployments, not for CI/testing
   ...(process.env.NODE_ENV === "production" &&

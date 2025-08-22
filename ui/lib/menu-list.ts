@@ -66,7 +66,7 @@ export const getMenuList = (pathname: string): GroupProps[] => {
       menus: [
         {
           href: "/lighthouse",
-          label: "Lighthouse AI",
+          label: "3HUE-Security Vision",
           icon: LighthouseIcon,
         },
       ],
@@ -150,7 +150,7 @@ export const getMenuList = (pathname: string): GroupProps[] => {
             { href: "/scans", label: "Scan Jobs", icon: Timer },
             { href: "/integrations", label: "Integrations", icon: Puzzle },
             { href: "/roles", label: "Roles", icon: UserCog },
-            { href: "/lighthouse/config", label: "Lighthouse AI", icon: Cog },
+            { href: "/lighthouse/config", label: "3HUE-Security Vision", icon: Cog },
           ],
           defaultOpen: true,
         },

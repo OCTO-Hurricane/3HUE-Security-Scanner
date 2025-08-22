@@ -2,8 +2,10 @@
 
 import clsx from "clsx";
 import Link from "next/link";
+import Image from "next/image";
 
 import { ThreeHueLogo } from "@/components/icons";
+import { useTheme } from "next-themes";
 import { useSidebar } from "@/hooks/use-sidebar";
 import { useStore } from "@/hooks/use-store";
 import { cn } from "@/lib/utils";
@@ -13,6 +15,7 @@ import { Menu } from "./menu";
 import { SidebarToggle } from "./sidebar-toggle";
 
 export function Sidebar() {
+  const { theme } = useTheme();
   const sidebar = useStore(useSidebar, (x) => x);
   if (!sidebar) return null;
   const { isOpen, toggleOpen, getOpenState, setIsHover, settings } = sidebar;
@@ -48,7 +51,15 @@ export function Sidebar() {
             )}
           >
             <div className="flex items-center justify-center w-full">
-              <img src="/3HUE-logo-black.png" style={{ width: isOpen ? 120 : 48, height: 'auto' }} />
+                <Image
+                  src={theme === "dark" ? "/3HUE-logo-dark.png" : "/3HUE-logo-white.png"}
+                  alt="3HUE Security Vision Logo"
+                  width={isOpen ? 120 : 48}
+                  height={isOpen ? 48 : 48}
+                  style={{ height: 'auto' }}
+                  priority
+                  unoptimized
+                />
             </div>
           </Link>
         </Button>
